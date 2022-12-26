@@ -1,16 +1,20 @@
-#include <conin.h>
+#include "conin.h"
 
-int conin(char str[], int len)
+int conin(char *str, int max)
 {
 	int c;
+	int len;
 
-	if (fgets(str, len, stdin) == NULL)
+	if (fgets(str, max, stdin) == NULL)
 		return -1;
-	if (str[strlen(str) - 1] == '\n')
-		str[strlen(str) - 1] = '\0';
+
+	len = strlen(str);
+
+	if (str[len - 1] == '\n')
+		str[len - 1] = '\0';
 	else
 		while ((c = getchar()) != EOF && c != '\n')
 			;
 
-	return strlen(str);
+	return len;
 }
